@@ -1,0 +1,56 @@
+﻿<Window x:Class="Radeon_DX_Configurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Radeon_DX_Configurator"
+        xmlns:viewModel="clr-namespace:Radeon_DX_Configurator.ViewModel"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        Title="Radeon DX Configurator">
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid Width="800" Height="350">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="241*"/>
+            <ColumnDefinition Width="265*"/>
+            <ColumnDefinition Width="94*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="D3DVendorName" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.57"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=4}" ItemsSource="{Binding Model.CurrentValue}" Margin="10,26,10,0" VerticalAlignment="Top" Height="93" Grid.ColumnSpan="3">
+
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=.}" />
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Set Regular DX9" Command="{Binding RegularDX9Button}" Margin="10,0,0,80" VerticalAlignment="Bottom" Height="30" HorizontalAlignment="Left" Width="385" Grid.ColumnSpan="2"/>
+        <Button Content="Set Regular DX11" Command="{Binding RegularDX11Button}" Margin="0,0,10,80" VerticalAlignment="Bottom" Height="30" HorizontalAlignment="Right" Width="385" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button Content="Set DXNAVI (DX9)" Command="{Binding DXNAVI_DX9Button}" Margin="10,0,0,45" VerticalAlignment="Bottom" Height="30" HorizontalAlignment="Left" Width="385" Grid.ColumnSpan="2"/>
+        <Button Content="Set DXNAVI (DX11)" Command="{Binding DXNAVI_DX11Button}" Margin="0,0,10,45" VerticalAlignment="Bottom" Height="30" HorizontalAlignment="Right" Width="385" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button Content="Restore to backup" Command="{Binding RestoreBackupButton}" Margin="10,0,10,10" VerticalAlignment="Bottom" Height="30" Grid.ColumnSpan="3"/>
+        <Label Content="D3DVendorNameWOW" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.57"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=4}" ItemsSource="{Binding Model.CurrentWOWValue}" Margin="10,143,10,0" VerticalAlignment="Top" Height="92" Grid.ColumnSpan="3">
+
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding .}" />
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>
